@@ -35,6 +35,16 @@ Important limitation:
 The sentiment labels are balanced in this training split.
 This does not establish that real-world sentiment is equally distributed.
 
+### Cross-Language Distribution Comparison
+
+| Sentiment | English Count | Spanish Count | English % | Spanish % |
+|---|---:|---:|---:|---:|
+| Negative | 613 | 613 | 33.33% | 33.33% |
+| Neutral | 613 | 613 | 33.33% | 33.33% |
+| Positive | 613 | 613 | 33.33% | 33.33% |
+
+The two training samples have identical sentiment label distributions. This reflects the balanced composition of the dataset and should not be interpreted as evidence that real-world sentiment distributions are identical across English- and Spanish-speaking populations.
+
 ## 5. Text Length Analysis
 
 ### Descriptive Results
@@ -62,6 +72,18 @@ These findings are descriptive and do not establish that language itself causes 
 Text length may be a relevant factor when evaluating sentiment classification across languages. For example, a model may perform differently on short and long posts, or on posts containing slang, hashtags, and informal expressions.
 
 However, this analysis does not measure model performance or demonstrate that either language has a higher classification error rate. Further testing is needed to determine whether text length is associated with classification errors across languages.
+
+### Comparison by Sentiment Category
+
+The average text length difference between English and Spanish posts was observed across all three sentiment categories:
+
+- **Negative:** English posts were 27.69 characters longer on average.
+- **Neutral:** English posts were 25.03 characters longer on average.
+- **Positive:** English posts were 25.80 characters longer on average.
+
+The differences were similar across sentiment categories. This suggests that the observed language-level difference in average text length is not limited to one sentiment category in this sample.
+
+These results are descriptive. Further analysis is required to investigate possible explanations, including dataset construction, text preprocessing, and language-specific writing conventions.
 
 ## 6. Data Quality Checks
 
