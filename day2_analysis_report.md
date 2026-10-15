@@ -95,6 +95,24 @@ The English and Spanish training sets were checked for duplicate texts, missing 
 
 These checks support the basic structural quality of the data. However, they do not verify the correctness of every sentiment label or rule out all possible data quality issues.
 
+## Business Implications
+
+The findings suggest several practical considerations for businesses developing or deploying multilingual AI systems.
+
+1. **Language-specific evaluation:** English and Spanish posts showed different average text lengths in this dataset. Businesses should evaluate AI systems separately across languages rather than assuming that performance in one language guarantees similar performance in another.
+
+2. **Fairness and risk monitoring:** Differences in text characteristics may affect how text-processing systems interpret user content. Teams should investigate whether sentiment classification errors vary by language before drawing conclusions about fairness or deploying a model at scale.
+
+3. **Evidence-based decision-making:** Data analysis can help identify patterns that deserve further investigation. However, text length alone cannot establish sentiment accuracy, cultural differences, or unfair treatment. These questions require additional evaluation data and appropriate performance metrics.
+
+4. **Business application:** For companies using multilingual sentiment analysis to monitor customer feedback, these findings support language-specific testing and ongoing quality monitoring before using model outputs to inform customer experience or business decisions.
+
+### Recommended Next Steps
+
+- Evaluate sentiment classification performance separately for English and Spanish using metrics such as precision, recall, and F1-score.
+- Examine misclassified examples to identify potential language-specific error patterns.
+- Compare results across additional languages and datasets before making broader claims.
+
 ## 7. Limitations
 
 This analysis has several limitations:
@@ -109,10 +127,14 @@ Future work should examine data quality, evaluate model performance separately b
 
 ## 8. Next Steps
 
-- Check data quality and duplicate posts.
-- Compare sentiment classification performance across languages.
-- Evaluate whether text length affects model performance.
-- Document dataset licensing and attribution before redistribution.
+The next stage of this project will move from descriptive analysis to model evaluation.
+
+1. **Evaluate model performance:** Use a sentiment classifier to generate predictions for English and Spanish posts, then compare precision, recall, and F1-score for each language.
+2. **Investigate classification errors:** Examine misclassified posts to identify potential issues involving slang, informal expressions, and text length.
+3. **Assess potential fairness risks:** Compare error rates across languages and sentiment categories before drawing conclusions about differences in model performance.
+4. **Improve reproducibility:** Record the dataset version, code dependencies, and analysis steps. Review the dataset's licensing and attribution requirements before redistributing any data.
+
+These steps would help determine whether the descriptive differences identified in Day 2 are associated with meaningful differences in sentiment classification performance.
 
 ## 9. Reproducibility
 
