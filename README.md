@@ -5,6 +5,17 @@
 
 This project explores cross-cultural sentiment analysis using public multilingual social media data. It aims to investigate how language differences may affect text analysis and AI model evaluation.
 
+## Key Findings
+
+This project compares English and Spanish posts from the Cardiff NLP Tweet Sentiment Multilingual dataset to explore differences in text length across languages and sentiment categories.
+
+- **Text length:** English posts had an average length of 109.57 characters, compared with 83.39 for Spanish posts.
+- **Sentiment categories:** Negative posts were slightly longer on average than neutral and positive posts in both languages.
+- **Data quality:** Both language datasets contained 1,839 posts, with balanced sentiment labels and no missing text or label values.
+- **AI risk implications:** Differences in text length suggest that language-specific text characteristics should be considered when designing and evaluating multilingual sentiment analysis systems.
+
+**Important limitation:** These are descriptive findings from this dataset. They do not establish that language or culture causes differences in writing style, nor do they measure sentiment model accuracy.
+
 ## Research Questions
 
 - How does sentiment distribution differ across languages?
