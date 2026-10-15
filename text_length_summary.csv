@@ -1,0 +1,7 @@
+Language,Sentiment,Count,Mean,Median,Std
+English,Negative,613,112.98,117.0,25.2
+English,Neutral,613,107.33,114.0,26.13
+English,Positive,613,108.39,114.0,25.36
+Spanish,Negative,613,85.28,88.0,32.13
+Spanish,Neutral,613,82.3,83.0,31.97
+Spanish,Positive,613,82.59,81.0,31.18
