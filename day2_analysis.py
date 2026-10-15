@@ -1,13 +1,23 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from datasets import load_dataset
+import json
+from huggingface_hub import hf_hub_download
 
-# Load the public multilingual sentiment dataset
-dataset = load_dataset("cardiffnlp/tweet_sentiment_multilingual")
+# Download the English and Spanish training files
+en_path = hf_hub_download(
+    repo_id="cardiffnlp/tweet_sentiment_multilingual",
+    filename="data/english/train.jsonl",
+    repo_type="dataset"
+)
+es_path = hf_hub_download(
+    repo_id="cardiffnlp/tweet_sentiment_multilingual",
+    filename="data/spanish/train.jsonl",
+    repo_type="dataset"
+)
 
-# Analyze the English and Spanish training splits
-en_df = dataset["english"]["train"].to_pandas()
-es_df = dataset["spanish"]["train"].to_pandas()
+# Read JSONL files into pandas DataFrames
+en_df = pd.read_json(en_path, lines=True)
+es_df = pd.read_json(es_path, lines=True)
 
 label_names = {0: "Negative", 1: "Neutral", 2: "Positive"}
 
