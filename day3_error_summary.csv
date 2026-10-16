@@ -1,0 +1,7 @@
+Language,Sentiment,Correct_predictions,Total_posts,Error_rate
+English,negative,557,613,0.0914
+English,neutral,423,613,0.31
+English,positive,483,613,0.2121
+Spanish,negative,548,613,0.106
+Spanish,neutral,427,613,0.3034
+Spanish,positive,530,613,0.1354
