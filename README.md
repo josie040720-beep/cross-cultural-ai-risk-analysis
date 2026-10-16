@@ -73,3 +73,53 @@ Run `day2_analysis.py` in a Python environment with the required packages instal
 Dataset: Cardiff NLP, *Tweet Sentiment Multilingual*.
 
 Please consult the dataset card and the applicable Twitter/X terms before redistributing data or derived content.
+
+## Day 3: Multilingual Sentiment Model Evaluation
+
+### Objective
+Evaluate a multilingual sentiment classification model on English and Spanish social media posts, compare performance across languages, and identify sentiment-specific classification errors.
+
+### Model and Dataset
+- **Dataset:** [Cardiff NLP Tweet Sentiment Multilingual](https://huggingface.co/datasets/cardiffnlp/tweet_sentiment_multilingual)
+- **Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`
+- **Languages:** English and Spanish
+- **Sample size:** 1,839 posts per language
+- **Tools:** Python, Hugging Face Transformers, pandas, scikit-learn, Matplotlib
+
+### Key Findings
+
+| Metric | English | Spanish |
+|---|---:|---:|
+| Accuracy | 79.55% | 81.84% |
+| Macro F1-score | 79.38% | 81.63% |
+
+- Spanish achieved slightly higher accuracy and Macro F1-score in this evaluation.
+- Neutral sentiment was the most difficult category to classify, with error rates of 31.00% for English and 30.34% for Spanish.
+- Positive sentiment error rates were 21.21% for English and 13.54% for Spanish.
+- Performance varied by sentiment category, showing why overall accuracy alone is insufficient for evaluating multilingual AI systems.
+
+### Visual Results
+
+**Model Performance Comparison**
+
+![Model performance comparison](day3_model_comparison.png)
+
+**Confusion Matrix**
+
+![Confusion matrix](day3_confusion_matrix.png)
+
+### Business Implications
+
+Businesses using AI to analyse multilingual customer feedback should monitor model performance by both language and sentiment category. Misclassifying neutral feedback may distort customer satisfaction insights. Human review should be considered for ambiguous or high-impact decisions.
+
+### Limitations
+
+This is an exploratory evaluation using the dataset's training split, not an independent held-out test set. The results do not establish real-world generalisation, prove cultural differences, or independently demonstrate model bias. Further validation on independent data is needed.
+
+### Project Files
+
+- [`day3_model_evaluation_report.md`](day3_model_evaluation_report.md) — Detailed evaluation and business implications.
+- [`day3_model_comparison.png`](day3_model_comparison.png) — Comparison of model performance across languages.
+- [`day3_confusion_matrix.png`](day3_confusion_matrix.png) — Classification error patterns.
+- [`day3_error_summary.csv`](day3_error_summary.csv) — Error rates by language and sentiment category.
+
