@@ -1,125 +1,109 @@
-
 # Cross-Cultural AI Risk & Business Analytics
 
 ## Project Overview
 
-This project explores cross-cultural sentiment analysis using public multilingual social media data. It aims to investigate how language differences may affect text analysis and AI model evaluation.
+This project investigates multilingual sentiment classification using English and Spanish social media text from the Cardiff NLP Tweet Sentiment Multilingual dataset.
+
+The project combines exploratory data analysis, text-length comparison, sentiment classification evaluation, and error analysis to examine how model performance varies across languages and sentiment categories.
+
+**Objective:** To demonstrate how data analysis and model evaluation can help identify reliability risks in multilingual AI applications.
 
 ## Key Findings
 
-This project compares English and Spanish posts from the Cardiff NLP Tweet Sentiment Multilingual dataset to explore differences in text length across languages and sentiment categories.
+### 1. Exploratory Data Analysis
 
-- **Text length:** English posts had an average length of 109.57 characters, compared with 83.39 for Spanish posts.
-- **Sentiment categories:** Negative posts were slightly longer on average than neutral and positive posts in both languages.
-- **Data quality:** Both language datasets contained 1,839 posts, with balanced sentiment labels and no missing text or label values.
-- **AI risk implications:** Differences in text length suggest that language-specific text characteristics should be considered when designing and evaluating multilingual sentiment analysis systems.
+The English and Spanish training splits each contain 1,839 posts, with balanced negative, neutral, and positive labels.
 
-**Important limitation:** These are descriptive findings from this dataset. They do not establish that language or culture causes differences in writing style, nor do they measure sentiment model accuracy.
+| Metric | English | Spanish |
+|---|---:|---:|
+| Number of posts | 1,839 | 1,839 |
+| Average text length | 109.57 characters | 83.39 characters |
 
-## Research Questions
+English posts were longer on average in this sample. This is a descriptive observation and does not establish a causal linguistic or cultural explanation.
 
-- How does sentiment distribution differ across languages?
-- Do text-length distributions vary between English and Spanish posts?
-- How might language differences affect multilingual AI evaluation?
-- What data-quality and evaluation risks should be considered?
+### 2. Official Test Set Evaluation
 
-## Dataset
+The model `cardiffnlp/twitter-xlm-roberta-base-sentiment` was evaluated on the dataset's official test splits.
 
-**Source:** [Cardiff NLP — Tweet Sentiment Multilingual](https://huggingface.co/datasets/cardiffnlp/tweet_sentiment_multilingual)
+| Metric | English | Spanish |
+|---|---:|---:|
+| Test set size | 870 | 870 |
+| Accuracy | 73.22% | 69.66% |
+| Macro F1-score | 0.7301 | 0.6933 |
 
-The dataset contains social media text and three sentiment labels:
+English performed better than Spanish on these test sets, with an accuracy difference of 3.56 percentage points. This result describes performance on the selected data and does not establish that language or culture caused the difference.
 
-- `0`: Negative
-- `1`: Neutral
-- `2`: Positive
+### 3. Sentiment-Specific Performance
 
-This project currently analyzes the English and Spanish training splits, with 1,839 posts per language.
+| Language | Negative F1 | Neutral F1 | Positive F1 |
+|---|---:|---:|---:|
+| English | 0.79 | 0.63 | 0.77 |
+| Spanish | 0.75 | 0.58 | 0.75 |
 
-## Preliminary Findings
+Neutral sentiment was the weakest category in both languages. This highlights why overall accuracy alone may conceal important weaknesses in classification performance.
 
-- Both language subsets contain equal numbers of negative, neutral, and positive labels in the selected training split.
-- English posts are longer on average than Spanish posts in this sample.
-- These findings are descriptive and should not be interpreted as proof of causal cultural or linguistic differences.
-- The balanced label distribution may not reflect real-world social media sentiment.
+### 4. Error Analysis
+
+Exploratory error analysis on the training splits found that neutral sentiment was frequently confused with negative or positive sentiment.
+
+The three most common error types accounted for approximately 77.3% of all errors in that exploratory analysis. These results helped identify neutral sentiment as a priority for further investigation.
+
+**Evaluation note:** Training-split error patterns and official test-set metrics are reported separately because they serve different purposes.
+
+## Business and AI Risk Implications
+
+- **Language-specific monitoring:** Evaluate model performance separately across languages instead of relying only on an overall score.
+- **Category-level evaluation:** Monitor precision, recall, and F1-score for each sentiment category, especially neutral sentiment.
+- **Human review:** Consider additional review for ambiguous comments or predictions used in high-impact business decisions.
+- **Responsible interpretation:** Performance differences should trigger further investigation, not automatic conclusions about cultural differences or model bias.
+
+These are potential implications for multilingual customer-feedback analysis; this project does not measure actual business harm.
+
+## Dataset and Model
+
+- **Dataset:** [Cardiff NLP — Tweet Sentiment Multilingual](https://huggingface.co/datasets/cardiffnlp/tweet_sentiment_multilingual)
+- **Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`
+- **Languages:** English and Spanish
+- **Sentiment labels:** Negative, Neutral, Positive
+- **Tools:** Python, pandas, Matplotlib, Hugging Face Datasets, Hugging Face Transformers, scikit-learn
 
 ## Repository Contents
 
 | File | Description |
 |---|---|
-| `day2_analysis.py` | Python analysis script |
-| `day2_analysis_report.md` | Summary of data checks and findings |
-| `text_length_comparison.png` | Comparison of text-length distributions |
+| `day2_analysis.py` | Python script for exploratory data analysis |
+| `day2_analysis_report.md` | Data-quality checks and descriptive findings |
+| `text_length_comparison.png` | Text-length comparison visualization |
+| `text_length_summary.csv` | Text-length summary statistics |
+| `day3_error_summary.csv` | Exploratory error summary by language and sentiment |
+| `day4_error_analysis_report.md` | Detailed analysis of common classification errors |
+| `day5_test_set_comparison.csv` | Training-versus-test performance comparison |
+| `day5_classification_report.csv` | Test-set metrics by language and sentiment |
+| `day5_test_evaluation_report.md` | Detailed official test-set evaluation |
 
 ## Methods
 
-- Python and pandas for data inspection and summary statistics
-- Matplotlib for visualization
-- Hugging Face Datasets for data access
+1. Inspect dataset structure, label balance, missing values, and duplicate records.
+2. Compare text-length statistics across languages and sentiment categories.
+3. Evaluate sentiment classification using accuracy, macro F1, and class-level metrics.
+4. Analyse confusion patterns to identify categories that require further investigation.
+5. Translate evaluation findings into potential business and AI reliability implications.
 
-## Limitations and Next Steps
+## Limitations
 
-- Verify dataset version and licensing requirements.
-- Check duplicates and data quality.
-- Evaluate sentiment classification performance separately by language.
-- Examine potential language-related performance gaps.
-- Expand the analysis before drawing conclusions about cultural differences or business outcomes.
+- The analysis covers only English and Spanish from one dataset.
+- Balanced sentiment labels may not represent real-world customer-feedback distributions.
+- Training-split results are exploratory and should not be interpreted as independent test performance.
+- Test-set results may not generalise to different platforms, topics, or time periods.
+- The observed performance gap does not prove cultural causation or model bias.
+- The project does not establish the cause of the training-versus-test performance gap.
 
 ## Reproducibility
 
-Run `day2_analysis.py` in a Python environment with the required packages installed. The script downloads the public dataset through Hugging Face Datasets.
+The exploratory analysis script can be run in a Python environment with the required packages installed. The model evaluation was conducted using Hugging Face tools and scikit-learn.
+
+For full reproducibility, the analysis environment, package versions, dataset version, and exact evaluation procedure should be documented.
 
 ## Data Attribution
 
-Dataset: Cardiff NLP, *Tweet Sentiment Multilingual*.
-
-Please consult the dataset card and the applicable Twitter/X terms before redistributing data or derived content.
-
-## Day 3: Multilingual Sentiment Model Evaluation
-
-### Objective
-Evaluate a multilingual sentiment classification model on English and Spanish social media posts, compare performance across languages, and identify sentiment-specific classification errors.
-
-### Model and Dataset
-- **Dataset:** [Cardiff NLP Tweet Sentiment Multilingual](https://huggingface.co/datasets/cardiffnlp/tweet_sentiment_multilingual)
-- **Model:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`
-- **Languages:** English and Spanish
-- **Sample size:** 1,839 posts per language
-- **Tools:** Python, Hugging Face Transformers, pandas, scikit-learn, Matplotlib
-
-### Key Findings
-
-| Metric | English | Spanish |
-|---|---:|---:|
-| Accuracy | 79.55% | 81.84% |
-| Macro F1-score | 79.38% | 81.63% |
-
-- Spanish achieved slightly higher accuracy and Macro F1-score in this evaluation.
-- Neutral sentiment was the most difficult category to classify, with error rates of 31.00% for English and 30.34% for Spanish.
-- Positive sentiment error rates were 21.21% for English and 13.54% for Spanish.
-- Performance varied by sentiment category, showing why overall accuracy alone is insufficient for evaluating multilingual AI systems.
-
-### Visual Results
-
-**Model Performance Comparison**
-
-![Model performance comparison](day3_model_comparison.png)
-
-**Confusion Matrix**
-
-![Confusion matrix](day3_confusion_matrix.png)
-
-### Business Implications
-
-Businesses using AI to analyse multilingual customer feedback should monitor model performance by both language and sentiment category. Misclassifying neutral feedback may distort customer satisfaction insights. Human review should be considered for ambiguous or high-impact decisions.
-
-### Limitations
-
-This is an exploratory evaluation using the dataset's training split, not an independent held-out test set. The results do not establish real-world generalisation, prove cultural differences, or independently demonstrate model bias. Further validation on independent data is needed.
-
-### Project Files
-
-- [`day3_model_evaluation_report.md`](day3_model_evaluation_report.md) — Detailed evaluation and business implications.
-- [`day3_model_comparison.png`](day3_model_comparison.png) — Comparison of model performance across languages.
-- [`day3_confusion_matrix.png`](day3_confusion_matrix.png) — Classification error patterns.
-- [`day3_error_summary.csv`](day3_error_summary.csv) — Error rates by language and sentiment category.
-
+Dataset: Cardiff NLP, *Tweet Sentiment Multilingual*. Consult the dataset card and applicable terms before redistributing data or derived content.
