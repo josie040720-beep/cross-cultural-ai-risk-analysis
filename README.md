@@ -60,6 +60,40 @@ The three most common error types accounted for approximately 77.3% of all error
 
 **Evaluation note:** Training-split error patterns and official test-set metrics are reported separately because they serve different purposes.
 
+## Topic Analysis and Manual Validation
+
+### 1. Original Keyword-Based Topic Distribution
+
+Language-specific keyword rules were used to identify five topics: Daily Life, Emotions, Entertainment, Food, and Sports.
+
+![Topic Distribution: Original Keyword Rules](day7_topic_distribution_original.png)
+
+The original rules identified different numbers of posts across languages and topics. These counts reflect keyword matches rather than confirmed topic relevance, and should not be interpreted directly as differences in user preferences.
+
+### 2. Manual Audit of Refined Topic Rules
+
+A manual audit was conducted to assess the relevance of posts classified as Daily Life and Sports using refined keyword rules.
+
+![Manual Audit Precision by Language and Topic](day7_manual_audit_precision.png)
+
+| Language | Topic | Confirmed Samples | Relevant | Irrelevant | Precision |
+|---|---|---:|---:|---:|---:|
+| English | Daily Life | 10 | 7 | 3 | 70.0% |
+| English | Sports | 10 | 9 | 1 | 90.0% |
+| Spanish | Daily Life | 9 | 9 | 0 | 100.0% |
+| Spanish | Sports | 6 | 6 | 0 | 100.0% |
+| **Overall** | **Audited groups** | **35** | **31** | **4** | **88.6%** |
+
+One additional sample remained uncertain and was excluded from the precision calculations.
+
+### 3. Key Findings and Limitations
+
+- English Daily Life had the lowest precision in the reviewed sample, suggesting that some keywords may match posts that are not clearly about everyday life.
+- The Spanish groups achieved 100% precision among the reviewed samples, but their small sample sizes do not establish that the Spanish rules are more accurate.
+- The audit evaluates precision among reviewed, classified posts. It does not measure recall or identify relevant posts missed by the rules.
+- The topic distribution chart shows results from the original rules, while the audit evaluates samples from the refined rules. These represent different stages of the analysis.
+- The findings are preliminary and should not be generalised to the full dataset without further validation.
+- 
 ## Business and AI Risk Implications
 
 - **Language-specific monitoring:** Evaluate model performance separately across languages instead of relying only on an overall score.
@@ -90,6 +124,11 @@ These are potential implications for multilingual customer-feedback analysis; th
 | `day5_test_set_comparison.csv` | Training-versus-test performance comparison |
 | `day5_classification_report.csv` | Test-set metrics by language and sentiment |
 | `day5_test_evaluation_report.md` | Detailed official test-set evaluation |
+| `topic_manual_audit_labeled.csv` | Manually reviewed labels for keyword-based topic classification |
+| `day6_topic_audit_report.md` | Manual audit methodology, results, and limitations |
+| `day7_topic_distribution_original.png` | Topic distribution under the original keyword rules |
+| `day7_manual_audit_precision.png` | Precision estimates from the manual audit |
+| `day7_topic_distribution_original.csv` | Topic counts under the original keyword rules |
 
 ## Methods
 
