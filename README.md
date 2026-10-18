@@ -42,7 +42,17 @@ English performed better than Spanish on these test sets, with an accuracy diffe
 
 Neutral sentiment was the weakest category in both languages. This highlights why overall accuracy alone may conceal important weaknesses in classification performance.
 
-### 4. Error Analysis
+### 4. Model Performance Visualisation
+
+**Performance comparison across languages**
+
+![Model performance comparison](day3_model_comparison.png)
+
+**Confusion matrices showing classification patterns**
+
+![Confusion matrix](day3_confusion_matrix.png)
+
+### 5. Error Analysis
 
 Exploratory error analysis on the training splits found that neutral sentiment was frequently confused with negative or positive sentiment.
 
