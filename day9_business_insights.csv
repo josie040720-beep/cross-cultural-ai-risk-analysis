@@ -1,0 +1,4 @@
+﻿Finding,Evidence,Business implication,Next step
+Daily Life sentiment is similar,English positive 41.7%; Spanish positive 41.8%,Use as a cross-language comparison baseline,Review more examples to confirm topic consistency
+Positive sentiment differs in Emotions,English 56.1%; Spanish 44.0%; gap 12.1 percentage points,Investigate whether the difference reflects content or classification,Manually review examples and compare model errors
+Some topic groups are small,English Food: 14; Spanish Sports: 16,Avoid strong decisions based on small samples,Collect or review more relevant examples
